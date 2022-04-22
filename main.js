@@ -1,17 +1,27 @@
-//Loop allows 5 games and stores wins/losses
-let wins = 0;
-let losses = 0;
-for (let i = 0; i < 5; i++){
-  let roundResult = playRound();
-  //Adds total result to variables outside loop
-  if (roundResult.includes("Win")){
-    wins++;
-  } else if (roundResult.includes("Lose")){
-    losses++;
+let roundsToPlay = parseInt(prompt("How Many rounds would you like to play? (Integer only)"));
+console.log(game(roundsToPlay));
+
+//Plays a game with a chosen amount of rounds and returns an overall winner
+function game(amountOfRounds){
+  let wins = 0;
+  let losses = 0;
+  for (let i = 0; i < amountOfRounds; i++){
+    let roundResult = playRound();
+    //Adds total result to variables outside loop
+    if (roundResult.includes("Win")){
+      wins++;
+    } else if (roundResult.includes("Lose")){
+      losses++;
+    }
+  }
+  if (wins > losses){
+    return "You won overall";
+  } else if (losses > wins){
+    return "You lost overall";
+  } else {
+    return "It was a draw overall";
   }
 }
-
-
 
 //Plays a round and returns Win, Lose or Draw
 function playRound(){
