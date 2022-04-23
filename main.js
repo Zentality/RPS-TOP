@@ -1,6 +1,5 @@
 let playerWins = 0;
 let computerWins = 0;
-let draws = 0;
 
 //Listens for button presses, and uses that button to play a round with the user input and outputs result to console
 let buttons = document.querySelectorAll("button");
@@ -11,29 +10,6 @@ buttons.forEach((button) => {
 })
 
 
-//Plays a game with a chosen amount of rounds and returns an overall winner
-function game(amountOfRounds, userSelection){
-  let wins = 0;
-  let losses = 0;
-  for (let i = 0; i < amountOfRounds; i++){
-    let roundResult = playRound(userSelection);
-    //Adds total result to variables outside loop
-    if (roundResult.includes("Win")){
-      wins++;
-    } else if (roundResult.includes("Lose")){
-      losses++;
-    }
-  }
-  if (wins > losses){
-    return "You won overall";
-  } else if (losses > wins){
-    return "You lost overall";
-  } else {
-    return "It was a draw overall";
-  }
-}
-
-//Plays a round and returns Win, Lose or Draw
 function playRound(userSelection){
   //Gets a result from computer play to feed into the game as a string
   let computerSelection = computerPlay();
@@ -41,9 +17,33 @@ function playRound(userSelection){
   //Uses the user and computer input and returns a string stating the result (Player win, PC Win, Tie)
   let result = play(userSelection, computerSelection);
   let results = document.querySelector(".results");
-  results.textContent = "You choose: " + userSelection + " ... Computer chose: " + computerSelection + " ... " + result;
+
+  if (result.includes("Win")){
+    playerWins++;
+  } else if (result.includes("Lose")){
+    computerWins++;
+  }
+
+  results.textContent = `You choose: ${userSelection} ... Computer chose: ${computerSelection} ... ${result} Total wins: ${playerWins} losses: ${computerWins}`;
+
+  checkTotals();
 
   return result;
+}
+
+
+function checkTotals(){
+  let overall = document.querySelector(".overall");
+  overall.textContent = "";
+  if (playerWins >= 5){
+    overall.textContent = "Player has won first 5 games";
+    playerWins = 0;
+    computerWins = 0;
+  } else if (computerWins >= 5){
+    overall.textContent = "Computer has won first 5 games";
+    playerWins = 0;
+    computerWins = 0;
+  }
 }
 
 
