@@ -1,0 +1,24 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+.results, .overall {
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  border-radius: 50%;
+  margin: 16px;
+  font-size: 48px;
+  box-sizing: border-box;
+  height: 128px;
+  width: 128px;
+}
