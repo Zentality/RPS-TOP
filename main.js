@@ -1,33 +1,39 @@
-let roundsToPlay = parseInt(prompt("How Many rounds would you like to play? (Integer only)"));
-console.log(game(roundsToPlay));
-
 //Plays a game with a chosen amount of rounds and returns an overall winner
-function game(amountOfRounds){
-  let wins = 0;
-  let losses = 0;
-  for (let i = 0; i < amountOfRounds; i++){
-    let roundResult = playRound();
-    //Adds total result to variables outside loop
-    if (roundResult.includes("Win")){
-      wins++;
-    } else if (roundResult.includes("Lose")){
-      losses++;
-    }
-  }
-  if (wins > losses){
-    return "You won overall";
-  } else if (losses > wins){
-    return "You lost overall";
-  } else {
-    return "It was a draw overall";
-  }
-}
+// function game(amountOfRounds){
+//   let wins = 0;
+//   let losses = 0;
+//   for (let i = 0; i < amountOfRounds; i++){
+//     let roundResult = playRound();
+//     //Adds total result to variables outside loop
+//     if (roundResult.includes("Win")){
+//       wins++;
+//     } else if (roundResult.includes("Lose")){
+//       losses++;
+//     }
+//   }
+//   if (wins > losses){
+//     return "You won overall";
+//   } else if (losses > wins){
+//     return "You lost overall";
+//   } else {
+//     return "It was a draw overall";
+//   }
+// }
+
+
+//Listens for button presses, and uses that button to play a round with the user input and outputs result to console
+let buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    playRound(button.getAttribute("class"))
+  })
+})
+
+
 
 //Plays a round and returns Win, Lose or Draw
-function playRound(){
+function playRound(userSelection){
   //Gets player input, makes it lowercase and trims to match output of computerPlay()
-  let userSelection = prompt("Rock, Paper or Scissors?");
-  userSelection = userSelection.toLowerCase().trim();
 
   //Gets a result from computer play to feed into the game as a string
   let computerSelection = computerPlay();
