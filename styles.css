@@ -2,9 +2,8 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 10%;
 }
 
 .results, .overall {
@@ -21,4 +20,5 @@ button {
   box-sizing: border-box;
   height: 128px;
   width: 128px;
+  flex-shrink: 0;
 }

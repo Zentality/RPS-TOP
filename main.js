@@ -1,6 +1,8 @@
 let playerWins = 0;
 let computerWins = 0;
 
+
+
 //Listens for button presses, and uses that button to play a round with the user input and outputs result to console
 let buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
@@ -23,6 +25,8 @@ function playRound(userSelection){
   } else if (result.includes("Lose")){
     computerWins++;
   }
+
+  document.querySelector(".computer").textContent = "Hi";
 
   results.textContent = `You choose: ${userSelection} ... Computer chose: ${computerSelection} ... ${result} Total wins: ${playerWins} losses: ${computerWins}`;
 
